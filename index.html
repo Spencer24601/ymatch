@@ -96,8 +96,8 @@
           <label>First name
             <input name="first_name" autocomplete="given-name" maxlength="60">
           </label>
-          <label>Email
-            <input name="email" type="email" autocomplete="email" required maxlength="200" placeholder="you@email.com">
+          <label>BYU email
+            <input name="email" type="email" autocomplete="email" required maxlength="200" placeholder="netid@byu.edu">
           </label>
         </div>
         <div class="row">
@@ -125,7 +125,7 @@
         </div>
         <button type="submit" id="submit">Join the waitlist</button>
         <p id="msg" role="status" aria-live="polite"></p>
-        <p class="note">We'll only use your email to tell you when the first matches go out. Never shared, never sold.</p>
+        <p class="note">BYU students only, so everyone in the pool is a real student. We'll only use your email to tell you when the first matches go out. Never shared, never sold.</p>
       </form>
     </div>
   </section>
@@ -159,7 +159,7 @@
     var d = new FormData(form);
     if (d.get("website")) return; // honeypot
     var email = (d.get("email") || "").trim().toLowerCase();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return show("Please enter a valid email.", true);
+    if (!/^[^@\s]+@([a-z0-9-]+\.)*byu\.edu$/.test(email)) return show("Please use your BYU email (ending in @byu.edu).", true);
     if (!d.get("gender")) return show("Please choose an option for \"I am a\".", true);
     if (!SUPABASE_URL || !SUPABASE_KEY) return show("Signup isn't connected yet.", true);
 
